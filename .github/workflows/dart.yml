@@ -50,7 +50,7 @@ jobs:
 
   build_appbundle:
     name: Build flutter(Android)
-    # needs: [flutter_test]
+    needs: [flutter_test]
     runs-on: ubuntu-latest
     steps:
     # - name: Checkout Repository
