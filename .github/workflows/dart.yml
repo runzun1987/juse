@@ -72,8 +72,9 @@ jobs:
           body: "Release Notes for v1.0.${{ github.run_number }}"
           draft: false
           prerelease: false
-          token: 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
-  
+        
+        env:
+          GITHUB_TOKEN: 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
       - name: Attach Text File to Release
         uses: actions/upload-release-asset@v1
         with:
