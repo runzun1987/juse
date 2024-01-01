@@ -1,9 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Dart
+name: Release Text File to Different Repo
 
 on:
   push:
@@ -12,45 +7,8 @@ on:
     branches: ["main"]
 
 jobs:
-  # flutter_test:
-  #   name: Run flutter test and analyze
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-java@v1
-  #       with:
-  #         java-version: "12.x"
-  #     - uses: subosito/flutter-action@v2
-  #       with:
-  #         flutter-version: "3.3.0"
-      # - run: flutter pub get
-      # - run: flutter analyze
-      # - run: flutter test
-
-  # build_ios:
-  #   name: Build flutter(IOS)
-  #   needs: [flutter_test]
-  #   runs-on: macos-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: subosito/flutter-action@v2
-  #       with:
-  #         channel: "stable"
-  #         architecture: x64
-  #     - run: flutter pub get
-  #     - run: flutter clean
-  #     - run:  flutter build ipa --export-options-plist=ExportOptions.plist cd ios && fastlane beta ipa:../build/ios/ipa/YourBundleName.ipa
-  #     - name: Push IOS to Releases
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: release-ipa
-  #         # Path to the release files
-  #         path: build/ios/ipa/*.ipa
-  # path: /Users/runner/work/kachuwa-app-dev/kachuwa-app-dev/build/ios/iphoneos/*
-
   build_and_release:
     name: Build and Release Text File
-    # needs: [flutter_test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -75,7 +33,7 @@ jobs:
           draft: false
           prerelease: false
           owner: runzun1987  # Replace with the owner of the target repository
-          repo: kachuwaAppPublicToUse  # Replace with the name of the target repository
+          repo: kachuwaAppPublicToUse   # Replace with the name of the target repository
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
