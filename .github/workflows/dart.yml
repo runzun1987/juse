@@ -70,5 +70,5 @@ jobs:
           artifacts: "build/app/outputs/apk/debug/*"
           tag: v1.0.${{ github.run_number }}
           # token: "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"
-          token: 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
+          token: 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
         #   token: ${{ secrets.TOKEN }}
