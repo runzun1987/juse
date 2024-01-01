@@ -80,4 +80,4 @@ jobs:
           asset_path: sample.txt
           asset_name: sample.txt
           asset_content_type: "text/plain"
-          # token: ${{ secrets.GITHUB_TOKEN }}
+          token: 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
