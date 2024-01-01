@@ -74,6 +74,8 @@ jobs:
           body: "Release Notes for v1.0.${{ github.run_number }}"
           draft: false
           prerelease: false
+          owner: runzun1987  # Replace with the owner of the target repository
+          repo: kachuwaAppPublicToUse  # Replace with the name of the target repository
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
