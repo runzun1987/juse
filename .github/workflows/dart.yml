@@ -69,5 +69,5 @@ jobs:
           #   # build/app/outputs/flutter-apk/app-armeabi-v7a-debug.apk.
           artifacts: "build/app/outputs/apk/debug/*"
           tag: v1.0.${{ github.run_number }}
-          token: "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"
+          # token: "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"
         #   token: ${{ secrets.TOKEN }}
