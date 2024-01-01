@@ -1,0 +1,67 @@
+name: Kachuwa workflow
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  flutter_test:
+    name: Run flutter test and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.3.0"
+      - run: flutter pub get
+      # - run: flutter analyze
+      # - run: flutter test
+
+  # build_ios:
+  #   name: Build flutter(IOS)
+  #   needs: [flutter_test]
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: "stable"
+  #         architecture: x64
+  #     - run: flutter pub get
+  #     - run: flutter clean
+  #     - run:  flutter build ipa --export-options-plist=ExportOptions.plist cd ios && fastlane beta ipa:../build/ios/ipa/YourBundleName.ipa
+  #     - name: Push IOS to Releases
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: release-ipa
+  #         # Path to the release files
+  #         path: build/ios/ipa/*.ipa
+  # path: /Users/runner/work/kachuwa-app-dev/kachuwa-app-dev/build/ios/iphoneos/*
+
+  build_appbundle:
+    name: Build flutter(Android)
+    needs: [flutter_test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.3.0"
+
+      - run: flutter build apk --debug --split-per-abi
+      - name: Push APK to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          repo: runzun1987/kachuwaAppPublicToUse
+          #   # build/app/outputs/flutter-apk/app-armeabi-v7a-debug.apk.
+          artifacts: "build/app/outputs/apk/debug/*"
+          tag: v1.0.${{ github.run_number }}
+          token: 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
+        #   token: ${{ secrets.TOKEN }}
