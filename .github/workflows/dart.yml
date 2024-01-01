@@ -53,18 +53,20 @@ jobs:
     # needs: [flutter_test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-  
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Create Text File
         run: echo "Hello, this is a sample text file." > sample.txt
-  
+
       - name: Upload Text File
         uses: actions/upload-artifact@v2
         with:
           name: release
           path: sample.txt
-  
-      - name: Release Text File
+
+      - name: Create Release
+        id: create_release
         uses: actions/create-release@v1
         with:
           tag_name: v1.0.${{ github.run_number }}
@@ -72,9 +74,9 @@ jobs:
           body: "Release Notes for v1.0.${{ github.run_number }}"
           draft: false
           prerelease: false
-        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Attach Text File to Release
         id: upload_release_asset
         uses: actions/upload-release-asset@v1
