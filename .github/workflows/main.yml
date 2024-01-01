@@ -1,4 +1,4 @@
-name: Kachuwa workflow
+name: Test workflow
 
 on:
   pull_request:
