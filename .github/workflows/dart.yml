@@ -77,7 +77,7 @@ jobs:
           owner: runzun1987  # Replace with the owner of the target repository
           repo: kachuwaAppPublicToUse  # Replace with the name of the target repository
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
       - name: Attach Text File to Release
         id: upload_release_asset
